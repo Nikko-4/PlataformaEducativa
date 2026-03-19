@@ -1,0 +1,67 @@
+﻿@model PlataformaEducativa.Models.Cursos
+
+@{
+    ViewBag.Title = "Crear Curso";
+}
+
+@section Styles {
+    <link href="~/Content/create-curso.css" rel="stylesheet" />
+}
+
+<script>
+    document.body.classList.add("create-page");
+</script>
+
+<div class="container">
+
+    <div class="form-wrapper">
+
+        <h2 class="form-title">Crear nuevo curso</h2>
+        <p class="form-subtitle">Completa la información para añadir un nuevo curso a la plataforma</p>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            
+            <div class="form-group-custom">
+                @Html.LabelFor(m => m.Titulo)
+                @Html.TextBoxFor(m => m.Titulo, new { @class = "form-control form-control-lg", placeholder = "Ej: Curso de C#" })
+            </div>
+
+            
+            <div class="form-group-custom">
+                @Html.LabelFor(m => m.Descripcion)
+                @Html.TextAreaFor(m => m.Descripcion, new { @class = "form-control form-control-lg", rows = 5, placeholder = "Describe el contenido del curso..." })
+            </div>
+
+            
+            <div class="form-group-custom">
+                @Html.Label("Nivel")
+                @Html.DropDownListFor(m => m.Nivel,
+                    new SelectList(new[] { "Básico", "Intermedio", "Avanzado" }),
+                    "-- Selecciona nivel --",
+                    new { @class = "form-control form-control-lg" })
+            </div>
+
+            
+            <div class="form-group-custom form-check-custom">
+                @Html.CheckBoxFor(m => m.Publicado)
+                <label>Publicar curso</label>
+            </div>
+
+            
+            <div class="form-group-custom">
+                @Html.LabelFor(m => m.CreadoPor)
+                @Html.TextBoxFor(m => m.CreadoPor, new { @class = "form-control form-control-lg", placeholder = "ID del usuario creador" })
+            </div>
+
+            
+            <div class="form-actions">
+                <button type="submit" class="btn btn-success btn-lg">Crear Curso</button>
+                <a href="/Cursos" class="btn btn-outline-secondary btn-lg">Cancelar</a>
+            </div>
+        }
+    </div>
+
+</div>

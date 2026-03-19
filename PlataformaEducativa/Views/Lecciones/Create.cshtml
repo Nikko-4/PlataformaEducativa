@@ -1,0 +1,64 @@
+﻿@model PlataformaEducativa.Models.Leccion
+
+@{
+    ViewBag.Title = "Crear Lección";
+}
+
+@section Styles {
+    <link href="~/Content/create-curso.css" rel="stylesheet" />
+}
+
+<script>
+    document.body.classList.add("create-page");
+</script>
+
+<div class="container">
+
+    <div class="form-wrapper">
+
+        <h2 class="form-title">Crear nueva lección</h2>
+        <p class="form-subtitle">Completa la información para añadir una nueva lección al curso</p>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            
+            <div class="form-group-custom">
+                @Html.LabelFor(m => m.Titulo)
+                @Html.TextBoxFor(m => m.Titulo, new { @class = "form-control form-control-lg", placeholder = "Ej: Introducción a C#" })
+            </div>
+
+            
+            <div class="form-group-custom">
+                @Html.Label("Curso")
+                @Html.DropDownList("CursoId", (SelectList)ViewBag.CursoId, "-- Seleccione curso --", new { @class = "form-control form-control-lg" })
+            </div>
+
+            
+            <div class="form-group-custom">
+                @Html.LabelFor(m => m.Contenido)
+                @Html.TextAreaFor(m => m.Contenido, new { @class = "form-control form-control-lg", rows = 6, placeholder = "Escribe el contenido de la lección..." })
+            </div>
+
+            
+            <div class="form-group-custom">
+                @Html.LabelFor(m => m.Orden)
+                @Html.TextBoxFor(m => m.Orden, new { @class = "form-control form-control-lg", placeholder = "Orden de la lección en el curso" })
+            </div>
+
+            
+            <div class="form-group-custom">
+                @Html.LabelFor(m => m.VideoUrl)
+                @Html.TextBoxFor(m => m.VideoUrl, new { @class = "form-control form-control-lg", placeholder = "URL del video de la lección" })
+            </div>
+
+            
+            <div class="form-actions">
+                <button type="submit" class="btn btn-success btn-lg">Crear Lección</button>
+                <a href="/Lecciones" class="btn btn-outline-secondary btn-lg">Cancelar</a>
+            </div>
+        }
+    </div>
+
+</div>

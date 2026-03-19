@@ -1,0 +1,26 @@
+﻿@model PlataformaEducativa.Models.Leccion
+
+@{
+    ViewBag.Title = "Detalles de Lección";
+}
+
+<h2>@Model.Titulo</h2>
+
+<p><strong>Curso:</strong> @Model.Curso.Titulo</p>
+<p><strong>Orden:</strong> @Model.Orden</p>
+<p><strong>Contenido:</strong></p>
+<p>@Html.Raw(Model.Contenido)</p>
+
+@if (!string.IsNullOrEmpty(Model.VideoUrl))
+{
+    <p><strong>Vídeo:</strong></p>
+    <video width="640" height="360" controls>
+        <source src="@Model.VideoUrl" type="video/mp4">
+        Tu navegador no soporta la reproducción de vídeo.
+    </video>
+}
+
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Volver al listado", "Index")
+</p>

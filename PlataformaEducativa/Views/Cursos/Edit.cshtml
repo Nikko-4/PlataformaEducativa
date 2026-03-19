@@ -1,0 +1,46 @@
+﻿@model PlataformaEducativa.Models.Cursos
+
+@{
+    ViewBag.Title = "Editar Curso";
+}
+
+<h2>Editar Curso</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(m => m.Id)
+
+    <div class="form-horizontal">
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Titulo)
+            @Html.TextBoxFor(m => m.Titulo, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Descripcion)
+            @Html.TextAreaFor(m => m.Descripcion, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Nivel")
+            @Html.DropDownListFor(m => m.Nivel,
+                     new SelectList(new[] { "basico", "intermedio", "avanzado" }),
+                     new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Publicado)
+            @Html.CheckBoxFor(m => m.Publicado)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.CreadoPor)
+            @Html.TextBoxFor(m => m.CreadoPor, new { @class = "form-control" })
+        </div>
+
+        <button type="submit" class="btn btn-primary">Guardar cambios</button>
+    </div>
+}

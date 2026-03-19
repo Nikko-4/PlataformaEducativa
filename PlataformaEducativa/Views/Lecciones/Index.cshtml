@@ -1,0 +1,37 @@
+﻿@model IEnumerable<PlataformaEducativa.Models.Leccion>
+
+@{
+    ViewBag.Title = "Lecciones";
+}
+
+<h2>Lecciones</h2>
+
+<p>
+    @Html.ActionLink("Crear nueva lección", "Create")
+</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Título</th>
+            <th>Curso</th>
+            <th>Orden</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Titulo</td>
+                <td>@item.Curso.Titulo</td>
+                <td>@item.Orden</td>
+                <td>
+                    @Html.ActionLink("Detalles", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Editar", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Eliminar", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

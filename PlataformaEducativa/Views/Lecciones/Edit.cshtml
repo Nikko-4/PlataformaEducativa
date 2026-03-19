@@ -1,0 +1,25 @@
+﻿@model PlataformaEducativa.Models.Leccion
+
+@{
+    ViewBag.Title = "Editar Lección";
+}
+
+<h2>Editar Lección</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(model => model.Id)
+
+    <div class="form-horizontal">
+        
+        ...
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Guardar cambios" class="btn btn-primary" />
+                @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-default" })
+            </div>
+        </div>
+    </div>
+}

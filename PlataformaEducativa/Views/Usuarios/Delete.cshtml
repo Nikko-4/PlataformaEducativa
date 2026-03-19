@@ -1,0 +1,36 @@
+﻿
+@model PlataformaEducativa.Models.Usuarios
+
+@{
+    ViewBag.Title = "Eliminar Usuario";
+}
+
+<h2>Eliminar Usuario</h2>
+
+<h3>¿Seguro que deseas eliminar este usuario?</h3>
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>Nombre</dt>
+        <dd>@Model.Nombre</dd>
+
+        <dt>Apellidos</dt>
+        <dd>@Model.Apellidos</dd>
+
+        <dt>Email</dt>
+        <dd>@Model.Email</dd>
+
+        <dt>Rol</dt>
+        <dd>@Model.Rol</dd>
+    </dl>
+</div>
+
+@using (Html.BeginForm("DeleteConfirmed", "Usuarios", new { id = Model.Id }))
+{
+    @Html.AntiForgeryToken()
+    <button type="submit" class="btn btn-danger">Eliminar</button>
+}
+
+<p>
+    @Html.ActionLink("Volver al listado", "Index")
+</p>

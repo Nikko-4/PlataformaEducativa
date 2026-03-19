@@ -1,0 +1,202 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - EduPlatform</title>
+
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+
+    <style>
+        :root {
+            --primary-color: #0d6efd;
+            --secondary-color: #6610f2;
+            --bg-light: #f8f9fa;
+            --text-dark: #212529;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            padding-top: 75px; 
+            margin: 0;
+        }
+
+        
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            padding: 12px 0;
+            z-index: 1060;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary-color) !important;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-link {
+            font-weight: 500;
+            color: #495057 !important;
+            padding: 8px 16px !important;
+            transition: all 0.3s ease;
+        }
+
+            .nav-link:hover {
+                color: var(--primary-color) !important;
+            }
+
+        
+        .btn-custom {
+            border-radius: 50px;
+            padding: 8px 24px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn-login {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+            .btn-login:hover {
+                background-color: var(--primary-color);
+                color: white;
+            }
+
+        
+        .hero {
+            background: linear-gradient(90deg, rgba(13,110,253,0.95), rgba(102,16,242,0.95));
+            color: white;
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 30px rgba(13,110,253,0.12);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            min-height: 220px;
+        }
+
+            .hero .hero-inner {
+                max-width: 720px;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+                font-weight: 700;
+                margin-bottom: 12px;
+            }
+
+            .hero p {
+                opacity: 0.95;
+                margin-bottom: 0;
+                font-size: 1.05rem;
+            }
+
+        
+        .main-container {
+            min-height: calc(100vh - 150px);
+            padding-bottom: 50px;
+        }
+
+        
+        footer {
+            background: white;
+            padding: 30px 0;
+            border-top: 1px solid #eee;
+            margin-top: 50px;
+        }
+
+        .content-wrapper {
+            position: relative;
+            z-index: 1;
+        }
+    </style>
+
+    @RenderSection("Styles", required: false)
+</head>
+<body>
+    
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="@Url.Action("Index", "Home")">
+                <i class="bi bi-mortarboard-fill me-2"></i>EduPlatform
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Index", "Home")">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Index", "Cursos")">Cursos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("Index", "Lecciones")">Lecciones</a>
+                    </li>
+                </ul>
+
+                <div class="d-flex gap-2">
+                    @if (Request.IsAuthenticated)
+                    {
+                        <a class="btn btn-custom btn-outline-secondary" href="@Url.Action("Profile", "Account")">Mi perfil</a>
+                        <form action="@Url.Action("Logout", "Account")" method="post" style="display:inline;">
+                            @Html.AntiForgeryToken()
+                            <button type="submit" class="btn btn-custom btn-login">Cerrar sesión</button>
+                        </form>
+                    }
+                    else
+                    {
+                        <a href="@Url.Action("Create", "Usuarios")" class="btn btn-custom btn-login">Entrar</a>
+                        <a href="@Url.Action("Create", "Usuarios")" class="btn btn-custom btn-primary">Registrarse</a>
+                    }
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    
+    <main role="main" class="main-container container content-wrapper">
+        
+        <section class="hero">
+            <div class="hero-inner">
+                <h1>Únete y empieza tu aprendizaje</h1>
+                <p class="lead">Regístrate ahora y accede a todos nuestros cursos y recursos.</p>
+            </div>
+        </section>
+
+        @RenderBody()
+    </main>
+
+   
+    <footer class="text-center text-muted">
+        <div class="container">
+            <p class="mb-0">&copy; @DateTime.Now.Year - EduPlatform. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

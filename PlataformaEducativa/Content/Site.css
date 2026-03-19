@@ -1,0 +1,43 @@
+﻿/* HERO */
+.hero-section {
+    background: linear-gradient(135deg, #003366, #0056b3);
+    border-radius: 12px;
+}
+
+/* ESTADÍSTICAS */
+.stat-box {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 3px 8px rgba(0,0,0,0.1);
+}
+
+    .stat-box h2 {
+        color: #0056b3;
+        font-weight: bold;
+    }
+
+/* TARJETAS PRINCIPALES */
+.feature-card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0px 3px 10px rgba(0,0,0,0.1);
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+    .feature-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0px 6px 15px rgba(0,0,0,0.15);
+    }
+
+/* BOTONES */
+.btn-primary {
+    background-color: #0056b3;
+    border: none;
+}
+
+    .btn-primary:hover {
+        background-color: #003f88;
+    }

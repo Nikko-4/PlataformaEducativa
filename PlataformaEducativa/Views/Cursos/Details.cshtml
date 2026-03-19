@@ -1,0 +1,21 @@
+﻿@model PlataformaEducativa.Models.Cursos
+
+@{
+    ViewBag.Title = "Detalles del Curso";
+}
+
+<h2>Detalles del Curso</h2>
+
+<div>
+    <p><strong>Título:</strong> @Model.Titulo</p>
+    <p><strong>Descripción:</strong> @Model.Descripcion</p>
+    <p><strong>Nivel:</strong> @Model.Nivel</p>
+    <p><strong>Publicado:</strong> @(Model.Publicado ? "Sí" : "No")</p>
+    <p><strong>Fecha creación:</strong> @Model.FechaCreacion.ToString("dd/MM/yyyy")</p>
+    <p><strong>Creado por (ID usuario):</strong> @Model.CreadoPor</p>
+</div>
+
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Volver", "Index")
+</p>

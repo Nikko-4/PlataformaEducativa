@@ -1,0 +1,76 @@
+﻿@model PlataformaEducativa.Models.Usuarios
+
+@{
+    ViewBag.Title = "Crear Usuario";
+}
+
+@section Styles {
+    <link href="~/Content/create-usuario.css" rel="stylesheet" />
+}
+
+<script>
+    document.body.classList.add("create-page");
+</script>
+
+<div class="container">
+
+    <div class="form-wrapper">
+
+        <h2 class="form-title">Crear cuenta</h2>
+        <p class="form-subtitle">Introduce tus datos para registrarte en la plataforma</p>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger mb-4" })
+
+            
+            <div class="form-group-custom">
+                @Html.LabelFor(m => m.Nombre)
+                @Html.TextBoxFor(m => m.Nombre, new { @class = "form-control form-control-lg", placeholder = "Tu nombre" })
+            </div>
+
+            
+            <div class="form-group-custom">
+                @Html.LabelFor(m => m.Apellidos)
+                @Html.TextBoxFor(m => m.Apellidos, new { @class = "form-control form-control-lg", placeholder = "Tus apellidos" })
+            </div>
+
+            
+            <div class="form-group-custom">
+                @Html.LabelFor(m => m.Email)
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control form-control-lg", placeholder = "correo@ejemplo.com" })
+            </div>
+
+            
+            <div class="form-group-custom">
+                @Html.LabelFor(m => m.Password)
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control form-control-lg", placeholder = "Contraseña" })
+            </div>
+
+            
+            <div class="form-group-custom">
+                @Html.LabelFor(m => m.Rol)
+                @Html.DropDownListFor(m => m.Rol,
+                    new SelectList(new[] { "Alumno", "Administrador" }),
+                    "-- Selecciona rol --",
+                    new { @class = "form-control form-control-lg" })
+            </div>
+
+            
+            <div class="form-group-custom form-check-custom">
+                @Html.CheckBoxFor(m => m.Activo)
+                <label>Usuario activo</label>
+            </div>
+
+            
+            <div class="form-actions">
+                <button type="submit" class="btn btn-success btn-lg">Crear cuenta</button>
+                <a href="/Usuarios" class="btn btn-outline-secondary btn-lg">Cancelar</a>
+            </div>
+        }
+
+    </div>
+
+</div>
